@@ -1,0 +1,27 @@
+paths:
+  /api-v2/{url}:
+    delete:
+      summary: Supprimer un lien raccourci
+      description: Supprime un lien raccourci en spécifiant la clef d'API dans l'en-tête X-API-Key.
+      parameters:
+        - in: path
+          name: url
+          required: true
+          description: L'URL raccourcie à supprimer.
+          schema:
+            type: string
+        - in: header
+          name: X-API-Key
+          required: true
+          description: Clef d'API générée lors de la création du lien raccourci.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lien raccourci supprimé avec succès.
+        '401':
+          description: Non autorisé, l'en-tête X-API-Key est manquant.
+        '403':
+          description: Non autorisé, la clef d'API ne correspond pas au lien demandé.
+        '404':
+          description: Lien raccourci introuvable.
